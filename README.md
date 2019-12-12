@@ -6,7 +6,7 @@ For the time being please copy and paste the code directly from GitHub. I will p
 ## Features
 The script will download the Office Deployment Tool from Microsoft's website first. If you have an XML file that you'd like to use you can supply it to the **-ConfigurationXMLFile** parameter like below:
 
-`.\Install-Office365.ps1 -ConfigurationXMLFile "C:\Kits\OfficeConfig.xml"`
+`.\Install-Office365Suite.ps1 -ConfigurationXMLFile "C:\Kits\OfficeConfig.xml"`
 
 If you don't you can run it without any parameters and it will install with the default settings below:
 ```xml

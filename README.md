@@ -29,3 +29,4 @@ Alternatively, you can set many settings from the command line that you'd like t
  Parameter | Possible Values 
 --- | --- |
 -AcceptEULA | TRUE,FALSE
+-Poop | and pee

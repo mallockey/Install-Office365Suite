@@ -43,4 +43,4 @@ Alternatively, you can set many settings from the command line that you'd like t
 -KeepMSI | [Switch]
 
 ## Additional Info
-By default, the script will create and download the ODT tool to "C:\Scripts\Office365Install" folder. You can change this with the -OfficeInstallDownloadPath parameter
+By default, the script will create and download the ODT tool to "C:\Scripts\Office365Install" folder. You can change this with the **-OfficeInstallDownloadPath** parameter

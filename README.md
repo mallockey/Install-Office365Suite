@@ -29,4 +29,16 @@ Alternatively, you can set many settings from the command line that you'd like t
  Parameter | Possible Values 
 --- | --- |
 -AcceptEULA | TRUE,FALSE
--Poop | and pee
+-Channel | Broad, Targeted, Monthly
+-DisplayInstall | [Switch]
+-EnabledUpdates | TRUE, FALSE
+-ExcludeApps | Groove, Outlook, OneNote, Access, OneDrive, Publisher, Word, Excel, PowerPoint, Teams, Lync
+-OfficeArch | 64, 32
+-OfficeEdition | O365ProPlusRetail, O365BusinessRetail
+-OfficeInstallerDownloadPath | [String] **Isntall**
+-SharedComputerLicensing | 0,1
+-LoggingPath | [String]
+-SourcePath | [String]
+-PinItemsToTaskbar  | TRUE, FALSE
+-KeepMSI | [Switch]
+

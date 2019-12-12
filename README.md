@@ -35,7 +35,7 @@ Alternatively, you can set many settings from the command line that you'd like t
 -ExcludeApps | Groove, Outlook, OneNote, Access, OneDrive, Publisher, Word, Excel, PowerPoint, Teams, Lync
 -OfficeArch | 64, 32
 -OfficeEdition | O365ProPlusRetail, O365BusinessRetail
--OfficeInstallerDownloadPath | [String] *Specify path*
+-OfficeInstallerDownloadPath   | [String] *Specify path*
 -SharedComputerLicensing | 0,1
 -LoggingPath | [String] *Specify path*
 -SourcePath | [String] *Specify path*

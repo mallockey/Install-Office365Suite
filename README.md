@@ -26,5 +26,5 @@ If you don't you can run it without any parameters and it will install with the 
 
 Alternatively, you can set many settings from the command line that you'd like to include, below is a list of the settings and their values:
 
-| Parameter | Possible Values |
+|---Parameter--- | Possible Values |
 -AcceptEULA | TRUE,FALSE

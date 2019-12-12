@@ -8,7 +8,7 @@ The script will download the Office Deployment Tool from Microsoft's website fir
 
 `.\Install-Office365Suite.ps1 -ConfigurationXMLFile "C:\Kits\OfficeConfig.xml"`
 
-If you don't you can run it without any parameters and it will install with the default settings below:
+If you don't, you can run it without any parameters and it will install with the default settings below:
 ```xml
 <Configuration>
   <Add OfficeClientEdition="64" Channel="Broad">

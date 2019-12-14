@@ -16,18 +16,6 @@ Param(
   [String]$OfficeInstallDownloadPath = "C:\Scripts\Office365Install"
 )
 
-$VerbosePreference = "Continue"
-$CurrentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
-If(!($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))){
-    Write-Warning "Script is not running as Administrator"
-    Write-Warning "Please rerun this script as Administrator."
-    Exit
-}
-
-If(-Not(Test-Path $OfficeInstallDownloadPath )){
-  New-Item -Path $OfficeInstallDownloadPath  -ItemType Directory -ErrorAction Stop | Out-Null
-}
-
 Function Generate-XMLFile{
 
   If($ExcludeApps){
@@ -90,10 +78,58 @@ Function Generate-XMLFile{
   $OfficeXML.Save("$OfficeInstallDownloadPath\OfficeInstall.xml")
   Return "$OfficeInstallDownloadPath\OfficeInstall.xml"
 }
-If(!($ConfiguratonXMLFile)){
+Function Test-URL{
+  Param(
+	$CurrentURL
+  )
 
+  Try{
+    $HTTPRequest = [System.Net.WebRequest]::Create($CurrentURL)
+    $HTTPResponse = $HTTPRequest.GetResponse()
+    $HTTPStatus = [Int]$HTTPResponse.StatusCode
+
+    If($HTTPStatus -ne 200) {
+      Return $False
+    }
+
+	  $HTTPResponse.Close()
+
+  }Catch{
+	  Return $False
+  }	
+  Return $True
+}
+Function Get-ODTURL {
+  $ODTDLLink = "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe"
+
+  If((Test-URL -CurrentURL $ODTDLLink) -eq $False){
+	$MSWebPage = (Invoke-WebRequest "https://www.microsoft.com/en-us/download/confirmation.aspx?id=49117" -UseBasicParsing).Content
+  
+    #Thank you reddit user, u/sizzlr for this addition.
+    $MSWebPage | ForEach-Object {
+	  If ($_ -match "url=(https://.*officedeploymenttool.*\.exe)"){
+	    $ODTDLLink = $matches[1]}
+	  }
+  }
+  Return $ODTDLLink
+}
+
+$VerbosePreference = "Continue"
+$ErrorActionPreference = "Stop"
+
+$CurrentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+If(!($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))){
+    Write-Warning "Script is not running as Administrator"
+    Write-Warning "Please rerun this script as Administrator."
+    Exit
+}
+
+If(-Not(Test-Path $OfficeInstallDownloadPath )){
+  New-Item -Path $OfficeInstallDownloadPath  -ItemType Directory -ErrorAction Stop | Out-Null
+}
+
+If(!($ConfiguratonXMLFile)){ #If the user didn't specify with -ConfigurationXMLFile param, we make one!
   $ConfiguratonXMLFile = Generate-XMLFile
-
 }Else{
   If(!(Test-Path $ConfiguratonXMLFile)){
     Write-Warning "The configuration XML file is not a valid file"
@@ -102,8 +138,8 @@ If(!($ConfiguratonXMLFile)){
   }
 }
 
-$ErrorActionPreference = "Stop"
-$ODTInstallLink = "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_12130-20272.exe"
+#Get the ODT Download link
+$ODTInstallLink = Get-ODTURL
 
 #Download the Office Deployment Tool
 Write-Verbose "Downloading the Office Deployment Tool..."
@@ -116,7 +152,7 @@ Try{
   Exit
 }
 
-#Run the Office Deployment Tool
+#Run the Office Deployment Tool setup
 Try{
   Write-Verbose "Running the Office Deployment Tool..."
   Start-Process "$OfficeInstallDownloadPath\ODTSetup.exe" -ArgumentList "/quiet /extract:$OfficeInstallDownloadPath" -Wait
@@ -125,7 +161,7 @@ Try{
   Write-Warning $_
 }
 
-#Run the install
+#Run the O365 install
 Try{
   Write-Verbose "Downloading and installing Office 365"
   $OfficeInstall = Start-Process "$OfficeInstallDownloadPath\Setup.exe" -ArgumentList "/configure $ConfiguratonXMLFile" -Wait -PassThru
@@ -134,9 +170,12 @@ Try{
   Write-Warning $_
 }
 
+#Check if Office 365 suite was installed correctly.
+
 $RegLocations = @('HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall',
                   'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall'
-                  )
+                 )
+
 $OfficeInstalled = $False
 Foreach ($Key in (Get-ChildItem $RegLocations) ) {
   If($Key.GetValue("DisplayName") -like "*Office 365*") {
@@ -144,10 +183,9 @@ Foreach ($Key in (Get-ChildItem $RegLocations) ) {
     $OfficeInstalled = $True
   }
 }
+
 If($OfficeInstalled){
   Write-Verbose "$($OfficeVersionInstalled) installed successfully!"
 }Else{
   Write-Warning "Office 365 was not detected after the install ran"
 }
-
-

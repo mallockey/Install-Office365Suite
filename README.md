@@ -2,7 +2,9 @@
 ## Description
 A PowerShell script that installs Office 365 on a workstation with parameters that talor the install to your specific needs.
 ## Installing the script
-For the time being please copy and paste the code directly from GitHub. I will publish to the PowerShell Gallery when I've done more testing.
+
+`Install-Script -Name Install-Office365Suite`
+
 ## Features
 The script will download the Office Deployment Tool from Microsoft's website first. If you have an XML file that you'd like to use you can supply it to the **-ConfigurationXMLFile** parameter like below:
 

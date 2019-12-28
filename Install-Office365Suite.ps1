@@ -131,7 +131,7 @@ Function Test-URL{
       Return $False
     }
 
-	  $HTTPResponse.Close()
+    $HTTPResponse.Close()
 
   }Catch{
 	  Return $False
@@ -146,9 +146,9 @@ Function Get-ODTURL {
   
     #Thank you reddit user, u/sizzlr for this addition.
     $MSWebPage | ForEach-Object {
-	  If ($_ -match "url=(https://.*officedeploymenttool.*\.exe)"){
-	    $ODTDLLink = $matches[1]}
-	  }
+      If ($_ -match "url=(https://.*officedeploymenttool.*\.exe)"){
+        $ODTDLLink = $matches[1]}
+      }
   }
   Return $ODTDLLink
 }

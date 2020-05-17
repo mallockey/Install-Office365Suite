@@ -39,7 +39,7 @@
 
 [CmdletBinding(DefaultParameterSetName = 'XMLFile')]
 Param(
-  [Parameter(ParameterSetName = "XMLFile")][ValidateNotNullOrEmpty()][String]$ConfiguratonXMLFile,
+  [Parameter(ParameterSetName = "XMLFile")][ValidateNotNullOrEmpty()][String]$ConfigurationXMLFile,
   [Parameter(ParameterSetName = "NoXML")][ValidateSet("TRUE","FALSE")]$AcceptEULA = "TRUE",
   [Parameter(ParameterSetName = "NoXML")][ValidateSet("Broad","Targeted","Monthly")]$Channel = "Broad",
   [Parameter(ParameterSetName = "NoXML")][Switch]$DisplayInstall = $False,
@@ -167,10 +167,10 @@ If(-Not(Test-Path $OfficeInstallDownloadPath )){
   New-Item -Path $OfficeInstallDownloadPath  -ItemType Directory -ErrorAction Stop | Out-Null
 }
 
-If(!($ConfiguratonXMLFile)){ #If the user didn't specify with -ConfigurationXMLFile param, we make one!
-  $ConfiguratonXMLFile = Generate-XMLFile
+If(!($ConfigurationXMLFile)){ #If the user didn't specify with -ConfigurationXMLFile param, we make one!
+  $ConfigurationXMLFile = Generate-XMLFile
 }Else{
-  If(!(Test-Path $ConfiguratonXMLFile)){
+  If(!(Test-Path $ConfigurationXMLFile)){
     Write-Warning "The configuration XML file is not a valid file"
     Write-Warning "Please check the path and try again"
     Exit
@@ -203,7 +203,7 @@ Try{
 #Run the O365 install
 Try{
   Write-Verbose "Downloading and installing Office 365"
-  $OfficeInstall = Start-Process "$OfficeInstallDownloadPath\Setup.exe" -ArgumentList "/configure $ConfiguratonXMLFile" -Wait -PassThru
+  $OfficeInstall = Start-Process "$OfficeInstallDownloadPath\Setup.exe" -ArgumentList "/configure $ConfigurationXMLFile" -Wait -PassThru
 }Catch{
   Write-Warning "Error running the Office install. The error is below:"
   Write-Warning $_
@@ -228,5 +228,3 @@ If($OfficeInstalled){
 }Else{
   Write-Warning "Office 365 was not detected after the install ran"
 }
-
-

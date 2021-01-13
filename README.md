@@ -1,5 +1,5 @@
 ![](https://www.codetriage.com/mallockey/install-office365suite/badges/users.svg)
-#Install-Office365Suite
+# Install-Office365Suite
 ## Description
 A PowerShell script that installs Office 365 on a workstation with parameters that talor the install to your specific needs.
 ## Installing the script

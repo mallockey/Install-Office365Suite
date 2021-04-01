@@ -34,7 +34,7 @@ Alternatively, you can set many settings from the command line that you'd like t
 -AcceptEULA | TRUE,FALSE
 -Channel | Broad, Targeted, Monthly
 -DisplayInstall | [Switch]
--EnabledUpdates | TRUE, FALSE
+-EnableUpdates | TRUE, FALSE
 -ExcludeApps | Groove, Outlook, OneNote, Access, OneDrive, Publisher, Word, Excel, PowerPoint, Teams, Lync
 -OfficeArch | 64, 32
 -OfficeEdition | O365ProPlusRetail, O365BusinessRetail

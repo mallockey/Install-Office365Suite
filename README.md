@@ -1,5 +1,10 @@
 ![](https://www.codetriage.com/mallockey/install-office365suite/badges/users.svg)
 # Install-Office365Suite
+
+## Updates
+9/16/21
+* Fixed bug that would cause false reporting on if Office was installed correctly or not.
+* Added **-CleanUpInstallFiles** parameter
 ## Description
 A PowerShell script that installs Office 365 on a workstation with parameters that talor the install to your specific needs.
 ## Installing the script
@@ -44,10 +49,7 @@ Alternatively, you can set many settings from the command line that you'd like t
 -SourcePath | [String] *Specify path*
 -PinItemsToTaskbar  | TRUE, FALSE
 -KeepMSI | [Switch]
+-CleanUpInstallFiles | [Switch]
 
 ## Additional Info
 By default, the script will create and download the ODT tool to "C:\Scripts\Office365Install" folder. You can change this with the **-OfficeInstallDownloadPath** parameter
-
-There are more XML settings that can be baked into the script that will come in future updates.
-
-As of right now, the script will launch the ODT with the /Configure parameter. I will incorporate using the /Download and /Customize in future updates.

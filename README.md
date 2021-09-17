@@ -3,8 +3,9 @@
 
 ## Updates
 9/16/21
-* Fixed bug that would cause false reporting on if Office was installed correctly or not.
-* Added **-CleanUpInstallFiles** parameter
+* Cleaned up styling and reduced function complexity
+* Fixed bug that would cause false reporting on if Office was installed correctly or not
+* Added `-CleanUpInstallFiles` parameter
 ## Description
 A PowerShell script that installs Office 365 on a workstation with parameters that talor the install to your specific needs.
 ## Installing the script

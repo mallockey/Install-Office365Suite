@@ -63,7 +63,7 @@ function Set-XMLFile {
   else {
     $LoggingString = $Null
   }
-  #XML data that will be used for the download/install
+
   $OfficeXML = [XML]@"
   <Configuration>
     <Add OfficeClientEdition=$OfficeArchString $ChannelString $SourcePathString  >
@@ -80,7 +80,7 @@ function Set-XMLFile {
     $LoggingString
   </Configuration>
 "@
-  #Save the XML file
+
   $OfficeXML.Save("$OfficeInstallDownloadPath\OfficeInstall.xml")
   
 }
@@ -88,7 +88,6 @@ function Get-ODTURL {
 
   [String]$MSWebPage = Invoke-RestMethod 'https://www.microsoft.com/en-us/download/confirmation.aspx?id=49117'
 
-  #Thank you reddit user, u/sizzlr for this addition.
   $MSWebPage | ForEach-Object {
     if ($_ -match 'url=(https://.*officedeploymenttool.*\.exe)') {
       $matches[1]
@@ -152,7 +151,7 @@ try {
   Write-Verbose 'Downloading and installing Microsoft 365'
   $Silent = Start-Process "$OfficeInstallDownloadPath\Setup.exe" -ArgumentList "/configure $ConfigurationXMLFile" -Wait -PassThru
 }
-Catch {
+catch {
   Write-Warning 'Error running the Office install. The error is below:'
   Write-Warning $_
 }

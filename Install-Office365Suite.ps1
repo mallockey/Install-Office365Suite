@@ -149,7 +149,7 @@ catch {
 #Run the O365 install
 try {
   Write-Verbose 'Downloading and installing Microsoft 365'
-  # $Silent = Start-Process "$OfficeInstallDownloadPath\Setup.exe" -ArgumentList "/configure $ConfigurationXMLFile" -Wait -PassThru
+  $Silent = Start-Process "$OfficeInstallDownloadPath\Setup.exe" -ArgumentList "/configure $ConfigurationXMLFile" -Wait -PassThru
 }
 catch {
   Write-Warning 'Error running the Office install. The error is below:'

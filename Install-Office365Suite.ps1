@@ -112,6 +112,7 @@ if (-Not(Test-Path $OfficeInstallDownloadPath )) {
 
 if (!($ConfigurationXMLFile)) {
   Set-XMLFile
+  $ConfigurationXMLFile = "$OfficeInstallDownloadPath\OfficeInstall.xml"
 }
 else {
   if (!(Test-Path $ConfigurationXMLFile)) {
@@ -121,7 +122,6 @@ else {
   }
 }
 
-$ConfigurationXMLFile = "$OfficeInstallDownloadPath\OfficeInstall.xml"
 $ODTInstallLink = Get-ODTURL
 
 #Download the Office Deployment Tool
@@ -149,7 +149,7 @@ catch {
 #Run the O365 install
 try {
   Write-Verbose 'Downloading and installing Microsoft 365'
-  $Silent = Start-Process "$OfficeInstallDownloadPath\Setup.exe" -ArgumentList "/configure $ConfigurationXMLFile" -Wait -PassThru
+  # $Silent = Start-Process "$OfficeInstallDownloadPath\Setup.exe" -ArgumentList "/configure $ConfigurationXMLFile" -Wait -PassThru
 }
 catch {
   Write-Warning 'Error running the Office install. The error is below:'

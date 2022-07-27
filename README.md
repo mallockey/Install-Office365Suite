@@ -2,6 +2,8 @@
 # Install-Office365Suite
 
 ## Updates
+7/26/22
+* Fixed ConfigurationXMLFile Bug
 9/16/21
 * Cleaned up styling and reduced function complexity
 * Fixed bug that would cause false reporting on if Office was installed correctly or not

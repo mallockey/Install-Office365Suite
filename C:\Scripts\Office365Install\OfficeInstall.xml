@@ -1,0 +1,17 @@
+<Configuration>
+  <Add OfficeClientEdition="64" Channel="Current">
+    <Product ID="O365ProPlusRetail">
+      <Language ID="MatchOS" />
+      <ExcludeApp ID="Access" />
+    </Product>
+    <Product ID="ProjectProRetail">
+      <Language ID="MatchOS" />
+      <ExcludeApp ID="Access" />
+    </Product>
+  </Add>
+  <Property Name="PinIconsToTaskbar" Value="TRUE" />
+  <Property Name="SharedComputerLicensing" Value="0" />
+  <Display Level="None" AcceptEULA="TRUE" />
+  <Updates Enabled="TRUE" />
+  <RemoveMSI />
+</Configuration>

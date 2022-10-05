@@ -100,8 +100,6 @@ function Set-XMLFile {
   </Configuration>
 "@
 
-  Write-Host $OfficeXML
-
   $OfficeXML.Save("$OfficeInstallDownloadPath\OfficeInstall.xml")
   
 }

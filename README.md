@@ -33,7 +33,7 @@ If you don't, you can run it without any parameters and it will install with the
   <Display Level="None" AcceptEULA="TRUE" />
   <Updates Enabled="TRUE" />
   <RemoveMSI />
-</Configuration>`
+</Configuration>
 ```
 
 Alternatively, you can set many settings from the command line that you'd like to include, below is a list of the settings and their values:

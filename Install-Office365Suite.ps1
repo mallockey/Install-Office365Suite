@@ -79,7 +79,7 @@ function Set-XMLFile {
     $VisioString = "<Product ID=`"VisioProRetail`"`><Language ID=`"MatchOS`" />$ExcludeAppsString $LanguageString</Product>"
   }
   else {
-    VisioString = $Null
+    $VisioString = $Null
   }
 
   $OfficeXML = [XML]@"

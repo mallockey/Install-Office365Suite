@@ -4,12 +4,14 @@ param(
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$AcceptEULA = 'TRUE',
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('SemiAnnualPreview', 'SemiAnnual', 'MonthlyEnterprise', 'CurrentPreview', 'Current')]$Channel = 'Current',
   [Parameter(ParameterSetName = 'NoXML')][Switch]$DisplayInstall = $False,
+  [Parameter(ParameterSetName = 'NoXML')][Switch]$IncludeProject = $False,
+  [Parameter(ParameterSetName = 'NoXML')][Switch]$IncludeVisio = $False,
+  [Parameter(ParameterSetName = 'NoXML')][Array]$LanguageIDs,
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('Groove', 'Outlook', 'OneNote', 'Access', 'OneDrive', 'Publisher', 'Word', 'Excel', 'PowerPoint', 'Teams', 'Lync')][Array]$ExcludeApps,
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('64', '32')]$OfficeArch = '64',
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('O365ProPlusRetail', 'O365BusinessRetail')]$OfficeEdition = 'O365ProPlusRetail',
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet(0, 1)]$SharedComputerLicensing = '0',
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$EnableUpdates = 'TRUE',
-  [Parameter(ParameterSetName = 'NoXML')][String]$LoggingPath,
   [Parameter(ParameterSetName = 'NoXML')][String]$SourcePath,
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$PinItemsToTaskbar = 'TRUE',
   [Parameter(ParameterSetName = 'NoXML')][Switch]$KeepMSI = $False,
@@ -23,6 +25,15 @@ function Set-XMLFile {
     $ExcludeApps | ForEach-Object {
       $ExcludeAppsString += "<ExcludeApp ID =`"$_`" />"
     }
+  }
+
+  if ($LanguageIDs) {
+    $LanguageIDs | ForEach-Object {
+      $LanguageString += "<Language ID =`"$_`" />"
+    }
+  }
+  else {
+    $LanguageString = "<Language ID=`"MatchOS`" />"
   }
 
   if ($OfficeArch) {
@@ -57,27 +68,35 @@ function Set-XMLFile {
     $SilentInstallString = 'None'
   }
 
-  if ($LoggingPath) {
-    $LoggingString = "<Logging Level=`"Standard`" Path=`"$LoggingPath`" />"
+  if ($IncludeProject) {
+    $ProjectString = "<Product ID=`"ProjectProRetail`"`><Language ID=`"MatchOS`" />$ExcludeAppsString $LanguageString</Product>"
   }
   else {
-    $LoggingString = $Null
+    $ProjectString = $Null
+  }
+
+  if ($IncludeVisio) {
+    $VisioString = "<Product ID=`"VisioProRetail`"`><Language ID=`"MatchOS`" />$ExcludeAppsString $LanguageString</Product>"
+  }
+  else {
+    VisioString = $Null
   }
 
   $OfficeXML = [XML]@"
   <Configuration>
     <Add OfficeClientEdition=$OfficeArchString $ChannelString $SourcePathString  >
       <Product ID="$OfficeEdition">
-        <Language ID="MatchOS" />
+        $LanguageString
         $ExcludeAppsString
       </Product>
+      $ProjectString
+      $VisioString
     </Add>  
     <Property Name="PinIconsToTaskbar" Value="$PinItemsToTaskbar" />
     <Property Name="SharedComputerLicensing" Value="$SharedComputerlicensing" />
     <Display Level="$SilentInstallString" AcceptEULA="$AcceptEULA" />
     <Updates Enabled="$EnableUpdates" />
     $RemoveMSIString
-    $LoggingString
   </Configuration>
 "@
 

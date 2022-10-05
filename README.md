@@ -23,7 +23,7 @@ The script will download the Office Deployment Tool from Microsoft's website fir
 If you don't, you can run it without any parameters and it will install with the default settings below:
 ```xml
 <Configuration>
-  <Add OfficeClientEdition="64" Channel="Broad">
+  <Add OfficeClientEdition="64" Channel="Current">
     <Product ID="O365ProPlusRetail">
       <Language ID="MatchOS" />
     </Product>
@@ -41,17 +41,19 @@ Alternatively, you can set many settings from the command line that you'd like t
  Parameter | Possible Values 
 --- | --- |
 -AcceptEULA | TRUE,FALSE
--Channel | Broad, Targeted, Monthly
+-Channel | SemiAnnualPreview, SemiAnnual, MonthlyEnterprise, CurrentPreview, Current
 -DisplayInstall | [Switch]
 -EnableUpdates | TRUE, FALSE
+-LanguageIDs | [Array] en-us, ar-sa 
+-IncludeProject | [Switch]
+-IncludeVisio | [Switch]
 -ExcludeApps | Groove, Outlook, OneNote, Access, OneDrive, Publisher, Word, Excel, PowerPoint, Teams, Lync
 -OfficeArch | 64, 32
 -OfficeEdition | O365ProPlusRetail, O365BusinessRetail
 -OfficeInstallerDownloadPath   | [String] *Specify path*
 -SharedComputerLicensing | 0,1
--LoggingPath | [String] *Specify path*
 -SourcePath | [String] *Specify path*
--PinItemsToTaskbar  | TRUE, FALSE
+-PinItemsToTaskbar  | TRUE, FALSE (Windows 7 / 8 only!)
 -KeepMSI | [Switch]
 -CleanUpInstallFiles | [Switch]
 

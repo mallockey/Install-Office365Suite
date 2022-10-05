@@ -2,6 +2,12 @@
 # Install-Office365Suite
 
 ## Updates
+10/4/22
+* Added `-LanguageIDs` parameter
+* Added `-IncludeProject` parameter
+* Added `-IncludeVisio` parameter
+* Removed `-LoggingPath` as its not longer an option
+
 7/26/22
 * Fixed ConfigurationXMLFile Bug
 

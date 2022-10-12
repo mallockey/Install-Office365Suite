@@ -69,14 +69,14 @@ function Set-XMLFile {
   }
 
   if ($IncludeProject) {
-    $ProjectString = "<Product ID=`"ProjectProRetail`"`><Language ID=`"MatchOS`" />$ExcludeAppsString $LanguageString</Product>"
+    $ProjectString = "<Product ID=`"ProjectProRetail`"`>$ExcludeAppsString $LanguageString</Product>"
   }
   else {
     $ProjectString = $Null
   }
 
   if ($IncludeVisio) {
-    $VisioString = "<Product ID=`"VisioProRetail`"`><Language ID=`"MatchOS`" />$ExcludeAppsString $LanguageString</Product>"
+    $VisioString = "<Product ID=`"VisioProRetail`"`>$ExcludeAppsString $LanguageString</Product>"
   }
   else {
     $VisioString = $Null

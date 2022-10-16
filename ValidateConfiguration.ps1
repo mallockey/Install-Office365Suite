@@ -18,7 +18,7 @@ try {
 catch {
   Write-Verbose 'There was an error generating the XML config file'
 }
-Write-Host $OfficeXML
+
 try {
   Write-Verbose 'Uploading XML file to clients.config.office.net...'
 

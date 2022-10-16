@@ -5,7 +5,7 @@
 
 10/16/22
 
-Important: Moved `Get-XMLFile` and  `Get-ODTURL` to an external module in this repo. So if you plan to deploy this script it will be easiest to just download it from the ![PowerShell Gallery](https://www.powershellgallery.com/packages/Install-Office365Suite/). Otherwise you'll need to include the `InstallOffice.psm1` with your deployment or manually move the functions inside of the `Install-Office365Suite.ps1` for a single script deployment.
+Important: Moved `Get-XMLFile` and  `Get-ODTURL` to an external module in this repo. So if you plan to deploy this script it will be easiest to just download it from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Install-Office365Suite/). Otherwise you'll need to include the `InstallOffice.psm1` with your deployment or manually move the functions inside of the `Install-Office365Suite.ps1` for a single script deployment.
 
 10/4/22
 * Added `-LanguageIDs` parameter

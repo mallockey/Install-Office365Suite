@@ -2,6 +2,11 @@
 # Install-Office365Suite
 
 ## Updates
+
+10/16/22
+
+Important: Moved `Get-XMLFile` and  `Get-ODTURL` to an external module in this repo. So if you plan to deploy this script it will be easiest to just download it from the ![PowerShell Gallery](https://www.powershellgallery.com/packages/Install-Office365Suite/). Otherwise you'll need to include the `InstallOffice.psm1` with your deployment or manually move the functions inside of the `Install-Office365Suite.ps1` for a single script deployment.
+
 10/4/22
 * Added `-LanguageIDs` parameter
 * Added `-IncludeProject` parameter
@@ -11,10 +16,6 @@
 7/26/22
 * Fixed ConfigurationXMLFile Bug
 
-9/16/21
-* Cleaned up styling and reduced function complexity
-* Fixed bug that would cause false reporting on if Office was installed correctly or not
-* Added `-CleanUpInstallFiles` parameter
 ## Description
 A PowerShell script that installs Office 365 on a workstation with parameters that talor the install to your specific needs.
 ## Installing the script

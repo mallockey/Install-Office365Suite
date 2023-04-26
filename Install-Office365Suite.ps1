@@ -100,7 +100,7 @@ catch {
 #Run the Office Deployment Tool setup
 try {
   Write-Verbose 'Running the Office Deployment Tool...'
-  Start-Process "$OfficeInstallDownloadPath\ODTSetup.exe" -ArgumentList "/quiet /extract:$OfficeInstallDownloadPath" -Wait
+  Start-Process "$OfficeInstallDownloadPath\ODTSetup.exe" -ArgumentList "/quiet /extract:`"$OfficeInstallDownloadPath`"" -Wait
 }
 catch {
   Write-Warning 'Error running the Office Deployment Tool. The error is below:'
@@ -110,7 +110,7 @@ catch {
 #Run the O365 install
 try {
   Write-Verbose 'Downloading and installing Microsoft 365'
-  $Silent = Start-Process "$OfficeInstallDownloadPath\Setup.exe" -ArgumentList "/configure $ConfigurationXMLFile" -Wait -PassThru
+  $Silent = Start-Process "$OfficeInstallDownloadPath\Setup.exe" -ArgumentList "/configure `"$ConfigurationXMLFile`"" -Wait -PassThru
 }
 catch {
   Write-Warning 'Error running the Office install. The error is below:'

@@ -62,6 +62,7 @@ Alternatively, you can set many settings from the command line that you'd like t
 -SourcePath | [String] *Specify path*
 -PinItemsToTaskbar  | TRUE, FALSE (Windows 7 / 8 only!)
 -KeepMSI | [Switch]
+-SetFileFormat | [Switch]
 -CleanUpInstallFiles | [Switch]
 
 ## Additional Info

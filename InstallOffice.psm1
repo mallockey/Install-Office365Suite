@@ -15,7 +15,8 @@ function Get-XMLFile {
     [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$EnableUpdates = 'TRUE',
     [Parameter(ParameterSetName = 'NoXML')][String]$SourcePath,
     [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$PinItemsToTaskbar = 'TRUE',
-    [Parameter(ParameterSetName = 'NoXML')][Switch]$KeepMSI
+    [Parameter(ParameterSetName = 'NoXML')][Switch]$KeepMSI,
+    [Parameter(ParameterSetName = 'NoXML')][Switch]$SetFileFormat
   )
 
   if ($ExcludeApps) {
@@ -42,6 +43,17 @@ function Get-XMLFile {
   }
   else {
     $RemoveMSIString = '<RemoveMSI />'
+  }
+
+  if ($SetFileFormat) {
+    $AppSettingsString = '<AppSettings>
+      <User Key="software\microsoft\office\16.0\excel\options" Name="defaultformat" Value="51" Type="REG_DWORD" App="excel16" Id="L_SaveExcelfilesas" />
+      <User Key="software\microsoft\office\16.0\powerpoint\options" Name="defaultformat" Value="27" Type="REG_DWORD" App="ppt16" Id="L_SavePowerPointfilesas" />
+      <User Key="software\microsoft\office\16.0\word\options" Name="defaultformat" Value="" Type="REG_SZ" App="word16" Id="L_SaveWordfilesas" />
+    </AppSettings>'
+  }
+  else {
+    $AppSettingsString = $Null
   }
 
   if ($Channel) {
@@ -93,6 +105,7 @@ function Get-XMLFile {
     <Property Name="SharedComputerLicensing" Value="$SharedComputerlicensing" />
     <Display Level="$SilentInstallString" AcceptEULA="$AcceptEULA" />
     <Updates Enabled="$EnableUpdates" />
+    $AppSettingsString
     $RemoveMSIString
   </Configuration>
 "@

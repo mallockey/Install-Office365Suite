@@ -15,6 +15,7 @@ function Get-XMLFile {
     [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$EnableUpdates = 'TRUE',
     [Parameter(ParameterSetName = 'NoXML')][String]$SourcePath,
     [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$PinItemsToTaskbar = 'TRUE',
+    [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$ForceOpenAppShutdown = 'FALSE',
     [Parameter(ParameterSetName = 'NoXML')][Switch]$KeepMSI,
     [Parameter(ParameterSetName = 'NoXML')][Switch]$SetFileFormat
   )
@@ -102,6 +103,7 @@ function Get-XMLFile {
       $VisioString
     </Add>  
     <Property Name="PinIconsToTaskbar" Value="$PinItemsToTaskbar" />
+    <Property Name="FORCEAPPSHUTDOWN" Value="$ForceOpenAppShutdown" />
     <Property Name="SharedComputerLicensing" Value="$SharedComputerlicensing" />
     <Display Level="$SilentInstallString" AcceptEULA="$AcceptEULA" />
     <Updates Enabled="$EnableUpdates" />

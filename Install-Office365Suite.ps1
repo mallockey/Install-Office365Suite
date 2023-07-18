@@ -16,6 +16,7 @@ param(
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$PinItemsToTaskbar = 'TRUE',
   [Parameter(ParameterSetName = 'NoXML')][Switch]$KeepMSI,
   [Parameter(ParameterSetName = 'NoXML')][Switch]$SetFileFormat,
+  [Parameter(ParameterSetName = 'NoXML')][Switch]$ChangeArch,
   [String]$OfficeInstallDownloadPath = 'C:\Scripts\Office365Install',
   [Switch]$CleanUpInstallFiles = $False
 )
@@ -53,6 +54,7 @@ if (!($ConfigurationXMLFile)) {
       -PinItemsToTaskBar $PinItemsToTaskbar `
       -KeepMSI:$KeepMSI `
       -SetFileFormat:$SetFileFormat `
+      -ChangeArch:$ChangeArch `
   
   }
   else {
@@ -69,6 +71,7 @@ if (!($ConfigurationXMLFile)) {
       -PinItemsToTaskBar $PinItemsToTaskbar `
       -KeepMSI:$KeepMSI `
       -SetFileFormat:$SetFileFormat `
+      -ChangeArch:$ChangeArch `
   
   }
 

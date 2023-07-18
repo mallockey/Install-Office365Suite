@@ -16,7 +16,8 @@ function Get-XMLFile {
     [Parameter(ParameterSetName = 'NoXML')][String]$SourcePath,
     [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$PinItemsToTaskbar = 'TRUE',
     [Parameter(ParameterSetName = 'NoXML')][Switch]$KeepMSI,
-    [Parameter(ParameterSetName = 'NoXML')][Switch]$SetFileFormat
+    [Parameter(ParameterSetName = 'NoXML')][Switch]$SetFileFormat,
+    [Parameter(ParameterSetName = 'NoXML')][Switch]$ChangeArch
   )
 
   if ($ExcludeApps) {
@@ -36,6 +37,13 @@ function Get-XMLFile {
 
   if ($OfficeArch) {
     $OfficeArchString = "`"$OfficeArch`""
+  }
+
+  if ($ChangeArch) {
+    $MigrateArch = "MigrateArch=`"TRUE`""
+  }
+  else {
+    $MigrateArch = $Null
   }
 
   if ($KeepMSI) {
@@ -93,7 +101,7 @@ function Get-XMLFile {
 
   $OfficeXML = [XML]@"
   <Configuration>
-    <Add OfficeClientEdition=$OfficeArchString $ChannelString $SourcePathString  >
+    <Add OfficeClientEdition=$OfficeArchString $ChannelString $SourcePathString $MigrateArch >
       <Product ID="$OfficeEdition">
         $LanguageString
         $ExcludeAppsString

@@ -15,6 +15,7 @@ param(
   [Parameter(ParameterSetName = 'NoXML')][String]$SourcePath,
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$PinItemsToTaskbar = 'TRUE',
   [Parameter(ParameterSetName = 'NoXML')][Switch]$KeepMSI,
+  [Parameter(ParameterSetName = 'NoXML')][Switch]$RemoveAllProducts,
   [Parameter(ParameterSetName = 'NoXML')][Switch]$SetFileFormat,
   [String]$OfficeInstallDownloadPath = 'C:\Scripts\Office365Install',
   [Switch]$CleanUpInstallFiles = $False
@@ -52,6 +53,7 @@ if (!($ConfigurationXMLFile)) {
       -EnableUpdate $EnableUpdates `
       -PinItemsToTaskBar $PinItemsToTaskbar `
       -KeepMSI:$KeepMSI `
+      -RemoveAllProducts:$RemoveAllProducts `
       -SetFileFormat:$SetFileFormat `
   
   }
@@ -68,6 +70,7 @@ if (!($ConfigurationXMLFile)) {
       -EnableUpdate $EnableUpdates `
       -PinItemsToTaskBar $PinItemsToTaskbar `
       -KeepMSI:$KeepMSI `
+      -RemoveAllProducts:$RemoveAllProducts `
       -SetFileFormat:$SetFileFormat `
   
   }

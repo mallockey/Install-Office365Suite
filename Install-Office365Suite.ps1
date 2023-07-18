@@ -14,9 +14,11 @@ param(
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$EnableUpdates = 'TRUE',
   [Parameter(ParameterSetName = 'NoXML')][String]$SourcePath,
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$PinItemsToTaskbar = 'TRUE',
+  [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$ForceOpenAppShutdown = 'FALSE',
   [Parameter(ParameterSetName = 'NoXML')][Switch]$KeepMSI,
   [Parameter(ParameterSetName = 'NoXML')][Switch]$RemoveAllProducts,
   [Parameter(ParameterSetName = 'NoXML')][Switch]$SetFileFormat,
+  [Parameter(ParameterSetName = 'NoXML')][Switch]$ChangeArch,
   [String]$OfficeInstallDownloadPath = 'C:\Scripts\Office365Install',
   [Switch]$CleanUpInstallFiles = $False
 )
@@ -52,9 +54,11 @@ if (!($ConfigurationXMLFile)) {
       -SharedComputerLicensing $SharedComputerLicensing `
       -EnableUpdate $EnableUpdates `
       -PinItemsToTaskBar $PinItemsToTaskbar `
+      -ForceOpenAppShutdown $ForceOpenAppShutdown `
       -KeepMSI:$KeepMSI `
       -RemoveAllProducts:$RemoveAllProducts `
       -SetFileFormat:$SetFileFormat `
+      -ChangeArch:$ChangeArch `
   
   }
   else {
@@ -69,9 +73,11 @@ if (!($ConfigurationXMLFile)) {
       -SharedComputerLicensing $SharedComputerLicensing `
       -EnableUpdate $EnableUpdates `
       -PinItemsToTaskBar $PinItemsToTaskbar `
+      -ForceOpenAppShutdown $ForceOpenAppShutdown `
       -KeepMSI:$KeepMSI `
       -RemoveAllProducts:$RemoveAllProducts `
       -SetFileFormat:$SetFileFormat `
+      -ChangeArch:$ChangeArch `
   
   }
 

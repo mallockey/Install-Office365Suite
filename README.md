@@ -61,6 +61,7 @@ Alternatively, you can set many settings from the command line that you'd like t
 -SharedComputerLicensing | 0,1
 -SourcePath | [String] *Specify path*
 -PinItemsToTaskbar  | TRUE, FALSE (Windows 7 / 8 only!)
+-ForceOpenAppShutdown  | TRUE, FALSE
 -KeepMSI | [Switch]
 -SetFileFormat | [Switch]
 -ChangeArch | [Switch]

@@ -14,6 +14,7 @@ param(
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$EnableUpdates = 'TRUE',
   [Parameter(ParameterSetName = 'NoXML')][String]$SourcePath,
   [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$PinItemsToTaskbar = 'TRUE',
+  [Parameter(ParameterSetName = 'NoXML')][ValidateSet('TRUE', 'FALSE')]$ForceOpenAppShutdown = 'FALSE',
   [Parameter(ParameterSetName = 'NoXML')][Switch]$KeepMSI,
   [Parameter(ParameterSetName = 'NoXML')][Switch]$SetFileFormat,
   [Parameter(ParameterSetName = 'NoXML')][Switch]$ChangeArch,
@@ -52,6 +53,7 @@ if (!($ConfigurationXMLFile)) {
       -SharedComputerLicensing $SharedComputerLicensing `
       -EnableUpdate $EnableUpdates `
       -PinItemsToTaskBar $PinItemsToTaskbar `
+      -ForceOpenAppShutdown $ForceOpenAppShutdown `
       -KeepMSI:$KeepMSI `
       -SetFileFormat:$SetFileFormat `
       -ChangeArch:$ChangeArch `
@@ -69,6 +71,7 @@ if (!($ConfigurationXMLFile)) {
       -SharedComputerLicensing $SharedComputerLicensing `
       -EnableUpdate $EnableUpdates `
       -PinItemsToTaskBar $PinItemsToTaskbar `
+      -ForceOpenAppShutdown $ForceOpenAppShutdown `
       -KeepMSI:$KeepMSI `
       -SetFileFormat:$SetFileFormat `
       -ChangeArch:$ChangeArch `

@@ -1,6 +1,6 @@
 ![](https://www.codetriage.com/mallockey/install-office365suite/badges/users.svg)
 
-## If you found this script helpful and want to show some appreciation, feel free to send a coffee my way!
+### If you found this script helpful and want to show some appreciation, feel free to send a coffee my way!
 <br />
 <a href="https://venmo.com/joshua-melo-1" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 

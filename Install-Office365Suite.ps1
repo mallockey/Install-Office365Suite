@@ -97,6 +97,11 @@ else {
 
 $ODTInstallLink = Get-ODTURL
 
+if ($Null -eq $ODTInstallLink) {
+  Write-Error "Could not find ODT install link, exiting"
+  exit
+}
+
 #Download the Office Deployment Tool
 Write-Verbose 'Downloading the Office Deployment Tool...'
 try {

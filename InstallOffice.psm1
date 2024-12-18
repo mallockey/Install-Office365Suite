@@ -135,10 +135,12 @@ function Get-XMLFile {
 
 function Get-ODTURL {
 
-  [String]$MSWebPage = Invoke-RestMethod 'https://www.microsoft.com/en-us/download/confirmation.aspx?id=49117'
+  $OfficeDeploymentRegex = '"url":"(https:\/\/download\.microsoft\.com\/[^"]*officedeploymenttool[^"]*)"'
+
+  [String]$MSWebPage = Invoke-RestMethod 'https://www.microsoft.com/en-us/download/details.aspx?id=49117'
 
   $MSWebPage | ForEach-Object {
-    if ($_ -match 'url=(https://.*officedeploymenttool.*\.exe)') {
+    if ($_ -match $OfficeDeploymentRegex) {
       $matches[1]
     }
   }

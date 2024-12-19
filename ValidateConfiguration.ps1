@@ -5,7 +5,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $VerbosePreference = 'Continue'
 
-Import-Module './InstallOffice.psm1'
+Import-Module './Helpers.psm1'
 
 try {
   if (!$ConfigurationXMLFilePath) {

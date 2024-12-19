@@ -19,7 +19,7 @@ param(
   [Parameter(ParameterSetName = 'NoXML')][Switch]$RemoveAllProducts,
   [Parameter(ParameterSetName = 'NoXML')][Switch]$SetFileFormat,
   [Parameter(ParameterSetName = 'NoXML')][Switch]$ChangeArch,
-  [String]$OfficeInstallDownloadPath = 'C:\Scripts\Office365Install',
+  [String]$OfficeInstallDownloadPath = 'C:\Scripts\Microsoft365Install',
   [Switch]$CleanUpInstallFiles = $False
 )
 
@@ -33,7 +33,7 @@ if (!($CurrentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Admini
   exit
 }
 
-Import-Module '.\InstallOffice.psm1'
+Import-Module '.\Helpers.psm1'
 
 if (-Not(Test-Path $OfficeInstallDownloadPath )) {
   New-Item -Path $OfficeInstallDownloadPath -ItemType Directory | Out-Null
@@ -134,7 +134,7 @@ catch {
   Write-Warning $_
 }
 
-#Check if Office 365 suite was installed correctly.
+#Check if Microsoft 365 suite was installed correctly.
 $RegLocations = @('HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall',
   'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall'
 )
